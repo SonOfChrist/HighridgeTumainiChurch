@@ -1,0 +1,8 @@
+{
+  "name": "HighRidge Tumaini System",
+  "description": "Church management system and public website for HighRidge Tumaini Church",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

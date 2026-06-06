@@ -1,0 +1,81 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A church member or system administrator",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["visitor", "member", "leader", "admin"] },
+        "profile": {
+          "type": "object",
+          "properties": {
+            "firstName": { "type": "string" },
+            "lastName": { "type": "string" },
+            "phone": { "type": "string" }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Sermon": {
+       "title": "Sermon",
+       "description": "Audio/Video sermon archive",
+       "type": "object",
+       "properties": {
+          "title": { "type": "string" },
+          "speaker": { "type": "string" },
+          "date": { "type": "string", "format": "date-time" },
+          "series": { "type": "string" },
+          "mediaUrl": { "type": "string" }
+       },
+       "required": ["title", "speaker", "date"]
+    },
+    "Event": {
+       "title": "Event",
+       "description": "Church calendar event",
+       "type": "object",
+       "properties": {
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "date": { "type": "string", "format": "date-time" },
+          "location": { "type": "string" }
+       },
+       "required": ["title", "date"]
+    },
+    "Donation": {
+       "title": "Donation",
+       "description": "A financial tithe or offering",
+       "type": "object",
+       "properties": {
+          "userId": { "type": "string" },
+          "amount": { "type": "number" },
+          "currency": { "type": "string" },
+          "designation": { "type": "string" },
+          "status": { "type": "string", "enum": ["pending", "completed", "failed"] },
+          "createdAt": { "type": "string", "format": "date-time" }
+       },
+       "required": ["userId", "amount", "designation", "status"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profiles and RBAC tags"
+    },
+    "sermons/{sermonId}": {
+      "schema": { "$ref": "#/entities/Sermon" },
+      "description": "Publicly accessible sermons"
+    },
+    "events/{eventId}": {
+      "schema": { "$ref": "#/entities/Event" },
+      "description": "Church events"
+    },
+    "donations/{donationId}": {
+      "schema": { "$ref": "#/entities/Donation" },
+      "description": "Private giving records"
+    }
+  }
+}
