@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { BookOpen, Calendar, Heart, Home, LogIn, Menu, Shield, User } from "lucide-react";
 import { cn } from "../../lib/utils";
