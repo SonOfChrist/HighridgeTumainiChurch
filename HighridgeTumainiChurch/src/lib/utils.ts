@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { format, formatDistanceToNow, isPast, isFuture, addDays, subDays } from "date-fns";
+import { format, formatDistanceToNow, isPast, isFuture } from "date-fns";
 
 // 1-2. Tailwind CSS handling
 export function cn(...inputs: ClassValue[]) {
@@ -85,8 +85,8 @@ export const slugify = (text: string) => {
     .toLowerCase()
     .trim()
     .replace(/\s+/g, '-')
-    .replace(/[^\w\-]+/g, '')
-    .replace(/\-\-+/g, '-');
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-');
 };
 
 // 15. Delay / Sleep function
@@ -103,6 +103,7 @@ export const maskEmail = (email: string) => {
 export const safeJSONParse = (str: string, fallback: any = {}) => {
   try {
     return JSON.parse(str);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return fallback;
   }
